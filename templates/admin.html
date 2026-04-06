@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Painel Administrativo</title>
+</head>
+<body>
+    <h2>Pedidos do Dia</h2>
+    <form method="POST">
+        <button type="submit">Mostrar pedidos de hoje</button>
+    </form>
+
+    {% if pedidos %}
+        {% for pedido in pedidos %}
+            <hr>
+            <p><strong>ID:</strong> {{ pedido[0] }}</p>
+            <p><strong>Nome:</strong> {{ pedido[1] }}</p>
+            <p><strong>Telefone:</strong> {{ pedido[2] }}</p>
+            <p><strong>Hora:</strong> {{ pedido[5] }}</p>
+            <p><strong>Status:</strong> {{ pedido[4] }}</p>
+
+            <h4>Itens:</h4>
+            <ul>
+                {% for item in pedido[3] %}
+                    <li>{{ item['nome'] }} x {{ item['quantidade'] }}</li>
+                {% endfor %}
+            </ul>
+
+            <a href="/imprimir/{{ pedido[0] }}">Emitir Cupom PDV</a>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>

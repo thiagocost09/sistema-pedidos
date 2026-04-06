@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Reserva de Produtos</title>
+</head>
+<body>
+    <h2>Faça sua Reserva</h2>
+    <form method="POST">
+        <label>Nome:</label>
+        <input type="text" name="nome" required><br><br>
+
+        <label>Telefone:</label>
+        <input type="text" name="telefone" required><br><br>
+
+        <h3>Itens disponíveis:</h3>
+        {% for item in itens %}
+            {{ item.nome }} - Quantidade:
+            <input type="number" name="quantidade_{{ item.nome }}" min="0" value="0"><br>
+        {% endfor %}
+        <br>
+        <button type="submit">Reservar</button>
+    </form>
+</body>
+</html>
